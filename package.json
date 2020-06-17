@@ -1,0 +1,32 @@
+{
+  "name": "@dsign/polymer-mixin",
+  "version": "1.0.0",
+  "description": "Dsign polymer mixin",
+  "dependencies": {
+    "@polymer/app-localize-behavior": "^3.0.1",
+    "@dsign/library": "github:dsignn/library#master"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.11",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "dexie": "^2.0.4",
+    "jest": "^24.5.0",
+    "mocha": "^6.0.2",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsignn/polymer-mixin.git"
+  },
+  "author": "antonino.visalli@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsignn/polymer-mixin/issues"
+  },
+  "homepage": "https://github.com/dsignn/polymer-mixin#readme"
+}
