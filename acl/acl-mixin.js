@@ -62,6 +62,7 @@ export const AclMixin = (superClass) => {
                 return;
             }
 
+            this._set_role(evt.newValue.getRole());
             newValue.getEventManager().on(Acl.CHANGE_ROLE, (evt) => {
                 this._set_role(evt.data);
             });
