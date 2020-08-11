@@ -1,7 +1,7 @@
 /**
  * @type {Function}
  */
-var container = container ? container : null;
+const container = window['container'] ? window['container'] : null;
 export const ServiceInjectorMixin = (superClass) => {
     return class extends superClass {
         static get properties() {
