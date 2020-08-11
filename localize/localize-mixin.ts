@@ -1,13 +1,16 @@
-import { AppLocalizeBehavior } from '@polymer/app-localize-behavior/app-localize-behavior.js';
-import { Listener } from '@dsign/library/src/event/Listener';
-import { Localize } from '@dsign/library/src/localize/Localize';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import {AppLocalizeBehavior} from '@polymer/app-localize-behavior/app-localize-behavior.js';
+import {Listener} from '@dsign/library/src/event/Listener';
+import {Localize} from '@dsign/library/src/localize/Localize';
+import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
+
 /**
  *
  * @type {Function}
  */
 export const LocalizeMixin = (superClass) => {
-    return class extends mixinBehaviors([AppLocalizeBehavior], superClass) {
+
+    return class extends mixinBehaviors([AppLocalizeBehavior], superClass)  {
+
         static get properties() {
             return {
                 /**
@@ -21,6 +24,7 @@ export const LocalizeMixin = (superClass) => {
                 }
             };
         }
+
         /**
          * @param newValue
          */
@@ -30,14 +34,14 @@ export const LocalizeMixin = (superClass) => {
             }
             this.language = this._localizeService.getDefaultLang();
             this._evtListener = new Listener(this.changeLanguage.bind(this));
-            this._localizeService.getEventManager().on(Localize.CHANGE_LANGUAGE, this._evtListener);
+            this._localizeService.getEventManager().on(Localize.CHANGE_LANGUAGE, this._evtListener)
         }
+
         /**
          * @param evt
          */
         changeLanguage(evt) {
             this.language = evt.data.language;
         }
-    };
+    }
 };
-//# sourceMappingURL=localize-mixin.js.map

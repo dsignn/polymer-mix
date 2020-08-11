@@ -1,12 +1,16 @@
-import { Storage } from "@dsign/library/src/storage/Storage";
-import { Listener } from "@dsign/library/src/event/Listener";
+import {Storage} from "@dsign/library/src/storage/Storage";
+import {Listener} from "@dsign/library/src/event/Listener";
+
 /**
  * @type {Function}
  */
 export const StorageListMixin = (superClass) => {
+
     return class extends superClass {
+
         static get properties() {
             return {
+
                 /**
                  * @type object
                  */
@@ -15,14 +19,16 @@ export const StorageListMixin = (superClass) => {
                     notify: true,
                     value: {}
                 },
+
                 /**
                  * @type Array
                  */
-                entities: {
+                entities : {
                     type: Array,
                     notify: true,
                     value: []
                 },
+
                 /**
                  * @type StorageInterface
                  */
@@ -32,6 +38,7 @@ export const StorageListMixin = (superClass) => {
                     readOnly: true,
                     observer: "_changedStorage"
                 },
+
                 /**
                  * @type object
                  */
@@ -40,38 +47,44 @@ export const StorageListMixin = (superClass) => {
                     value: {}
                     // TODO add observer
                 },
+
                 autoladEntities: {
                     type: Boolean,
                     value: false
                 }
             };
         }
+
         /**
          * @param {StorageInterface} newValue
          * @private
          */
         _changedStorage(newValue) {
+
             if (!newValue) {
                 return;
             }
+
             if (super["_changedStorage"] && typeof this.super["_changedStorage"] === "function") {
                 super["_changedStorage"](newValue);
             }
+
             this.listenerUpdate = new Listener(this.getAll.bind(this));
             newValue.getEventManager().on(Storage.POST_SAVE, this.listenerUpdate);
-            if (this.autoladEntities) {
+
+            if(this.autoladEntities) {
                 this.getAll();
             }
         }
+
         /**
          *
          */
         getAll() {
             this._storage.getAll(this.filter)
                 .then((data) => {
-                this.set('entities', data);
-            });
+                    this.set('entities', data);
+                });
         }
-    };
+    }
 };
-//# sourceMappingURL=list-mixin.js.map

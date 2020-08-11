@@ -2,7 +2,9 @@
  * @type {Function}
  */
 export const NotifyMixin = (superClass) => {
+
     return class extends superClass {
+
         static get properties() {
             return {
                 /**
@@ -15,6 +17,7 @@ export const NotifyMixin = (superClass) => {
                 }
             };
         }
+
         /**
          * @param notify
          */
@@ -22,8 +25,8 @@ export const NotifyMixin = (superClass) => {
             if (!this._notifyService) {
                 return;
             }
+
             this._notifyService.notify(notify);
         }
-    };
+    }
 };
-//# sourceMappingURL=notify-mixin.js.map

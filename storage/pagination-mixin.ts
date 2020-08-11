@@ -1,20 +1,25 @@
-import { Storage } from "@dsign/library/src/storage/Storage";
-import { Listener } from "@dsign/library/src/event/Listener";
+import {Storage} from "@dsign/library/src/storage/Storage";
+import {Listener} from "@dsign/library/src/event/Listener";
+
 /**
  * @type {Function}
  */
 export const StoragePaginationMixin = (superClass) => {
+
     return class extends superClass {
+
         static get properties() {
             return {
+
                 /**
                  * @type Array
                  */
-                entities: {
+                entities : {
                     type: Array,
                     notify: true,
                     value: []
                 },
+
                 /**
                  * @type StorageInterface
                  */
@@ -23,6 +28,7 @@ export const StoragePaginationMixin = (superClass) => {
                     notify: true,
                     readOnly: true
                 },
+
                 /**
                  * @type number
                  */
@@ -31,6 +37,7 @@ export const StoragePaginationMixin = (superClass) => {
                     notify: true,
                     value: 1
                 },
+
                 /**
                  * @type number
                  */
@@ -39,6 +46,7 @@ export const StoragePaginationMixin = (superClass) => {
                     notify: true,
                     value: 20
                 },
+
                 /**
                  * @type number
                  */
@@ -48,6 +56,7 @@ export const StoragePaginationMixin = (superClass) => {
                     readOnly: true,
                     value: 0
                 },
+
                 /**
                  * @type object
                  */
@@ -58,30 +67,38 @@ export const StoragePaginationMixin = (superClass) => {
                 }
             };
         }
+
         /**
          * @param {Number} page
          * @param {Number} itemPerPage
          * @param storage
          */
         observerPaginationEntities(page, itemPerPage, storage) {
+
             if (!page || !itemPerPage || !storage) {
                 return;
             }
+
             this.getPagedEntities();
+
+
             this.listenerUpdate = new Listener(this.getPagedEntities.bind(this));
             storage.getEventManager().on(Storage.POST_SAVE, this.listenerUpdate);
         }
+
         /**
          * @private
          */
         getPagedEntities() {
+
             this._storage.getPaged(this.page, this.itemPerPage, this.filter)
                 .then((data) => {
-                this.set('entities', data);
-                this._setTotalItems(data.totalItems);
-                this.notifyPath('totalItems');
-            });
+                    this.set('entities', data);
+                    this._setTotalItems(data.totalItems);
+                    this.notifyPath('totalItems');
+                });
+
+
         }
-    };
+    }
 };
-//# sourceMappingURL=pagination-mixin.js.map
