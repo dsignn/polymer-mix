@@ -1,7 +1,6 @@
 /**
  * @type {Function}
  */
-const container = window['container'] ? window['container'] : null;
 export const ServiceInjectorMixin = (superClass) => {
     return class extends superClass {
         static get properties() {
@@ -16,7 +15,10 @@ export const ServiceInjectorMixin = (superClass) => {
          * @param newValue
          */
         changeServices(newValue) {
-            if (!newValue || !container) {
+            if (!newValue || !window['container']) {
+                if (!newValue && !window['container']) {
+                    console.warn('Container not set globally');
+                }
                 return;
             }
             this._searchService(newValue);
@@ -32,13 +34,13 @@ export const ServiceInjectorMixin = (superClass) => {
             }
             for (let property in services) {
                 switch (true) {
-                    case typeof services[property] === 'object' && container.has(property):
-                        this._searchService(services[property], container.get(property));
+                    case typeof services[property] === 'object' && window['container'].has(property):
+                        this._searchService(services[property], window['container'].get(property));
                         break;
                     default:
                         switch (true) {
-                            case container.has(services[property]) === true:
-                                container.getAsync(services[property])
+                            case window['container'].has(services[property]) === true:
+                                window['container'].getAsync(services[property])
                                     .then((service) => {
                                     this._setService(service, property);
                                 });
