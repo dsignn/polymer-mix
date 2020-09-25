@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Dsign polymer mixin",
   "dependencies": {
-    "@polymer/app-localize-behavior": "^3.0.1",
-    "@dsign/library": "github:dsignn/library#master"
+    "@dsign/library": "github:dsignn/library#master",
+    "intl-messageformat": "^9.3.8"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "tsc": "tsc -p ."
-    },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dsignn/polymer-mixin.git"
