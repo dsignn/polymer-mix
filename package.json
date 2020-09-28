@@ -4,7 +4,7 @@
   "description": "Dsign polymer mixin",
   "dependencies": {
     "@dsign/library": "github:dsignn/library#master",
-    "intl-messageformat": "^9.3.8"
+    "@polymer/app-localize-behavior": "^3.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
