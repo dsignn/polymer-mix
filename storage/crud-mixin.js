@@ -29,7 +29,7 @@ export const StorageCrudMixin = (superClass) => {
                     return element.id === evt.detail.id;
                 });
             }
-            if (index !== null) {
+            if (index > -1) {
                 this.splice('entities', index, 1);
                 this.notifyPath('entities');
             }
