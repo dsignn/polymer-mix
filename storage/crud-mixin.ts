@@ -31,16 +31,14 @@ export const StorageCrudMixin = (superClass) => {
 
             let index = null;
             if (this.entities &&  Array.isArray(this.entities)) {
-                this.entities.find((element, ind) => {
-                    if (element.id === evt.detail.id) {
-                        index = ind;
-                        return element;
-                    }
+                index = this.entities.findIndex((element, ind) => {
+                    return element.id === evt.detail.id;
                 });
             }
 
             if (index !== null) {
                 this.splice('entities', index, 1);
+                this.notifyPath('entities')
             }
 
             this._storage.delete(evt.detail).then(this._deleteCallback.bind(this));
