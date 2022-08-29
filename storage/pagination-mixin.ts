@@ -84,6 +84,8 @@ export const StoragePaginationMixin = (superClass) => {
 
             this.listenerUpdate = new Listener(this.getPagedEntities.bind(this));
             storage.getEventManager().on(Storage.POST_SAVE, this.listenerUpdate);
+            storage.getEventManager().on(Storage.POST_UPDATE, this.listenerUpdate);
+            storage.getEventManager().on(Storage.POST_REMOVE, this.listenerUpdate);
         }
 
         /**
