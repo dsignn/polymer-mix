@@ -63,7 +63,9 @@ export declare const StoragePaginationMixin: (superClass: any) => {
          */
         filter: {
             type: ObjectConstructor;
+            notify: boolean;
             value: {};
+            observer: string;
         };
     };
 };
