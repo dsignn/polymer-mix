@@ -98,7 +98,6 @@ export const StoragePaginationMixin = (superClass) => {
                 return;
             }
 
-            console.log('getPagedEntities');
             this._storage.getPaged(this.page, this.itemPerPage, this.filter)
                 .then((data) => {
                     this.set('entities', data);
